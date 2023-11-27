@@ -12,6 +12,7 @@ export class EmailsController {
     @Get()
     async getEmails() {
         return this.emailsService.getAllEmails();
+        // I love memingo
     }
     
     @ApiBearerAuth()
