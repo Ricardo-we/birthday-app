@@ -3,10 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
-
 
 model User {
   id    Int     @id @default(autoincrement())
@@ -14,17 +13,22 @@ model User {
   name  String?
   password String
   rol String? @default("USER")
+  birthdayCollections BirthdayCollection[]
 }
 
-model Email {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
+model BirthdayCollection {
+  id Int @id @default(autoincrement())
+  name String
+  code String @unique
   birthDays BirthDay[]
+  user_id Int @default(1)
+  user User @relation(fields: [user_id], references: [id])
 }
 
 model BirthDay {
   id   Int     @id @default(autoincrement())
   name String
   date DateTime
-  alertEmails Email[]
+  collection_id Int?
+  collection BirthdayCollection? @relation(fields: [collection_id], references: [id])
 }

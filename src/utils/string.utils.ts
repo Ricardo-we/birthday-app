@@ -60,3 +60,7 @@ export function replaceWithList(
 export function formatForSqlLikeClause(text: string) {
 	return text.replace(/%/g, "\\\\%").replace(/\s/g, "%");
 }
+
+export function generateRandomCode(size=10){
+	return Math.random().toString(36).substring(2,size + 2)
+}

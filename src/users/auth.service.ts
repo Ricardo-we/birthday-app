@@ -17,4 +17,13 @@ export class AuthService {
             token: await this.jwtService.signAsync(user),
         };
     }
+
+    async signUp(data: {email: string, password: string}) {
+        const user = await this.usersService.create(data.email, data.password);
+
+        return {
+            user,
+            token: await this.jwtService.signAsync(user),
+        };
+    }
 }

@@ -11,4 +11,10 @@ export class UsersController {
     async login(@Body() user: LoginSchema){
         return this.authService.loginUser(user.email, user.password);
     }
+
+    @Post("signup")
+    async signUp(@Body() user: LoginSchema){
+        console.log(user);
+        return this.authService.signUp(user);
+    }
 }
