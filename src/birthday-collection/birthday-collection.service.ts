@@ -1,13 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards } from '@nestjs/common';
 import { BirthDayCollectionSchema } from './schemas/birthday-collection.schema.';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { generateRandomCode } from 'src/utils/string.utils';
 import { User } from '@prisma/client';
+import { AuthGuard } from 'src/users/auth.guard';
 
 @Injectable()
 export class BirthdayCollectionService {
   constructor(private prisma: PrismaService) {}
-
+  
   create(createBirthdayCollectionDto: BirthDayCollectionSchema) {
     try{
       return this.prisma.birthdayCollection.create({

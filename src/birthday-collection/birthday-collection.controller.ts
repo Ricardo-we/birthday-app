@@ -3,16 +3,17 @@ import { BirthdayCollectionService } from './birthday-collection.service';
 import { BirthDaySchema } from 'src/birthdays/schemas/birthday.schema';
 import { AuthGuard } from 'src/users/auth.guard';
 
-@UseGuards(AuthGuard)
 @Controller('birthday-collection')
 export class BirthdayCollectionController {
   constructor(private readonly birthdayCollectionService: BirthdayCollectionService) {}
 
+  @UseGuards(AuthGuard)
   @Post()
   create(@Body() createBirthdayCollectionDto: BirthDaySchema) {
     return this.birthdayCollectionService.create(createBirthdayCollectionDto);
   }
 
+  @UseGuards(AuthGuard)
   @Get()
   findAll(@Req() request: Request) {
     const user = request['user'];
