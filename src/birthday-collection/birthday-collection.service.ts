@@ -40,10 +40,15 @@ export class BirthdayCollectionService {
   }
 
   update(id: number, updateBirthdayCollectionDto: BirthDayCollectionSchema) {
-    return `This action updates a #${id} birthdayCollection`;
+    return this.prisma.birthdayCollection.update({
+      where: { id },
+      data: updateBirthdayCollectionDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} birthdayCollection`;
+    this.prisma.birthdayCollection.delete({
+      where: { id },
+    });
   }
 }

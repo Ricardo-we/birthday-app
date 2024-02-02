@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Put } from '@nestjs/common';
 import { BirthdayCollectionService } from './birthday-collection.service';
 import { BirthDaySchema } from 'src/birthdays/schemas/birthday.schema';
 import { AuthGuard } from 'src/users/auth.guard';
@@ -25,7 +25,7 @@ export class BirthdayCollectionController {
     return this.birthdayCollectionService.findOne(code);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateBirthdayCollectionDto: BirthDaySchema) {
     return this.birthdayCollectionService.update(+id, updateBirthdayCollectionDto);
   }
